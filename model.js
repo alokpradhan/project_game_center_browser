@@ -24,7 +24,8 @@ var model = {
   },
 
   growSnake: function(newHeadDivID){
-    this.snakePosition.unshift(newHeadDivID+1);
+    this.snakePosition.unshift(newHeadDivID);
+    this.score++;
   }
 
 };

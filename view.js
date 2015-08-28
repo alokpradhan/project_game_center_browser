@@ -6,6 +6,10 @@ var view = {
 
   init: function(level){
     this.setGameBoard(level);
+
+    $(document).keydown(function(event){
+      view.setSnakeDirection(event);
+    });
   },
 
   setGameBoard: function(level) {
@@ -43,58 +47,67 @@ var view = {
 
   setFood: function() {
     var randomID;
+    $('.food').removeClass('food');
     do {
       randomID = Math.floor(Math.random()* this.totalDivs);
-      console.log("food" + model.gameboard[randomID]);
     } while (model.gameboard[randomID] !== "");
     $('#' + randomID).addClass('food');
-    gameboard[randomID] = "food";
+    model.gameboard[randomID] = "food";
   },
 
-  makeMove: function(direction){
-    snakeHead = model.snakePosition[0];
-    nextPosID =  snakeHead+1; // changes with direction
+  makeMove: function(){
+    nextPosID =  view.newDirectionID();
     if (controller.isValidMove(nextPosID)){
       console.log('inside makeMove if true');
       if (model.gameboard[nextPosID] === 'food'){
+        console.log(model.gameboard[nextPosID]);
         model.growSnake(nextPosID);
         view.setFood();
+      } else {
+        view.moveSnake(nextPosID);
       }
-      view.moveSnake(nextPosID);
     } else {
       controller.endGame();
     }
   },
 
+  newDirectionID: function() {
+    var snakeHead = model.snakePosition[0];
+    var divIdToMoveTo = 0;
+    switch (this.currentDirection) {
+      case 'left' :
+        divIdToMoveTo = snakeHead - 1;
+        break;
+      case 'right' :
+        divIdToMoveTo = snakeHead + 1;
+        break;
+      case 'up' :
+        divIdToMoveTo = snakeHead - view.defaultSize;
+        break;
+      case 'down':
+        divIdToMoveTo = snakeHead + view.defaultSize;
+        break;
+    }
+    return divIdToMoveTo;
+  },
+
   moveSnake: function(nextPosID){
-    console.log('inside makeSnake');
     snakeTail = model.snakePosition[model.score+1];
     $('#' + nextPosID).addClass('snake');
     $('#' + (snakeTail)).removeClass('snake');
     model.updateSnakeMove(nextPosID);
-    // this.currentDirection
+  },
+
+  setSnakeDirection: function(event){
+    this.currentDirection = this.userMove[event.which];
+  },
+
+  userMove: {
+    37: 'left',
+    38: 'up',
+    39: 'right',
+    40: 'down'
   }
-
-
-  userMove: function() {
-    $(document).keydown()
-  }
-
-  // make method call or property only?
-  // var keys: {
-  //   37: leftArrow,
-  //   38: upArrow,
-  //   39: rightArrow,
-  //   40: downArrow
-  // },
-
-  // moveSnake: function(){
-  //   $('#gameboard').ready(function(){
-  //     $("#snake").animate({ "left": "+=10px" }, "slow", view.moveSnake);
-  //   });
-  // }
-
-
 
 };
 
