@@ -75,6 +75,11 @@ var view = {
     // this.currentDirection
   }
 
+
+  userMove: function() {
+    $(document).keydown()
+  }
+
   // make method call or property only?
   // var keys: {
   //   37: leftArrow,

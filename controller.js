@@ -7,7 +7,6 @@ var controller = {
     this.gameLoop();
   },
 
-
   selectDifficulty: function(){
     var level = prompt('Select Difficulty Level: 1 for easy, 2 for medium, 3 for difficult');
     if (isNaN(level) || level > 3 || level < 1) {
@@ -22,15 +21,13 @@ var controller = {
   },
 
   gameLoop: function(){
-    window.setInterval(view.makeMove, 800);
+    window.interactionLoop = window.setInterval(view.makeMove, 800);
   },
 
-
   endGame: function(){
-    window.clearInterval(this.gameLoop());
+    window.clearInterval(window.interactionLoop);
     alert('You Lost!');
   }
-
 
 };
 
