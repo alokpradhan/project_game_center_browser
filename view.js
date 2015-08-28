@@ -12,7 +12,7 @@ var view = {
 
   moveSnake: function(){
     $('#gameboard').click(function(){
-      $("#snake").animate({ "right": "+=500px" }, "fast" );
+      $("#snake").animate({ "left": "+=100px" }, "slow" );
     });
   }
 
