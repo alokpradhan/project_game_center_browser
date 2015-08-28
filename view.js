@@ -11,10 +11,20 @@ var view = {
   },
 
   moveSnake: function(){
-    $('#gameboard').click(function(){
-      $("#snake").animate({ "left": "+=100px" }, "slow" );
+    $('#gameboard').ready(function(){
+      $("#snake").animate({ "left": "+=10px" }, "slow", view.moveSnake);
     });
   }
 
 
+
 };
+
+
+// Use keypress() over keydown()
+
+// http://stackoverflow.com/questions/14919459/using-jquery-on-to-watch-for-enter-key-press
+
+// http://www.cambiaresearch.com/articles/15/javascript-char-codes-key-codes
+
+// http://stackoverflow.com/questions/5106024/enter-listener-not-firing-on-webkit-chrome

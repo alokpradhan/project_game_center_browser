@@ -16,4 +16,7 @@ var controller = {
 
 };
 
-$(document).ready(function(){ controller.init(); });
+$(document).ready(function(){
+  controller.init();
+  // view.moveSnake();
+});
