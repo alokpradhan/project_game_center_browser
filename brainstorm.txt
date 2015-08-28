@@ -7,7 +7,7 @@ CONTROLLER
 -------------------------
 MODEL
   init()
-    -create snake obj with size
+    -create snake obj with length
 
   snakeGrows: when snake hits food
      snakelength += 1

@@ -1,5 +1,6 @@
 
 var controller = {
+
   init: function(){
     var level = this.selectDifficulty();
     view.init(level);
@@ -12,7 +13,7 @@ var controller = {
     }
     return level;
   }
-}
 
+};
 
-$(document).ready(){controller.init();};
+$(document).ready(function(){ controller.init(); });
