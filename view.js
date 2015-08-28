@@ -1,11 +1,10 @@
 var view = {
 
   defaultSize: 0,
-  gameboard: {},
+  currentDirection: "right",
 
   init: function(level){
     this.setGameBoard(level);
-    // this.moveSnake();
   },
 
   setGameBoard: function(level) {
@@ -13,7 +12,7 @@ var view = {
     totalDivs = view.defaultSize * view.defaultSize;
     for(var i=1; i <= totalDivs; i++){
       $('#gameboard').append('<div class="square" id="'+i+'"></div>');
-      view.gameboard[i] = "";
+      model.gameboard[i] = "";
       if (i % view.defaultSize === 0){
         $('#gameboard').append('<br>');
       }
@@ -30,13 +29,21 @@ var view = {
           (i%view.defaultSize === 0 || i%view.defaultSize === 1)
         ) {
         $('#'+ i).addClass('border');
-        view.gameboard[i] = 'border';
+        model.gameboard[i] = 'border';
       }
     }
   },
 
   setSnake: function() {
-    $('#' + (view.defaultSize + 2)).addClass('snake');
+    startingDivID = view.defaultSize + 2;
+    $('#' + (startingDivID).addClass('snake'));
+    model.gameboard[startingDivID] = 'snake';
+    model.snake.head = startingDivID;
+  },
+
+  moveSnake: function(direction){
+    console.log('snake moving');
+    // this.currentDirection
   }
 
   // make method call or property only?

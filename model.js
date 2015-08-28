@@ -2,7 +2,7 @@ var model = {
   // var snakeHead,
   // var snakeTail,
   // var food,
-
+  gameboard: {},
   snake: {},
 
   initialize: function(level) {
