@@ -1,4 +1,7 @@
 var model = {
+  // var snakeHead,
+  // var snakeTail,
+  // var food,
 
   snake: {},
 

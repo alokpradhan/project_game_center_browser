@@ -1,12 +1,29 @@
 
 #gameboard {
-  padding: 1em;
-  border: 5px solid black;
+}
+
+.square {
+/*  position: absolute;*/
+  display: inline-block;
+  height: 20px;
+  width: 20px;
+  border: 1px solid gray;
+}
+
+.border {
+  background-color: black;
 }
 
 #snake {
   position: absolute;
-  height: 10px;
-  width: 10px;
+  height: 20px;
+  width: 20px;
+  background-color: green;
+}
+
+.snake{
+  position: absolute;
+  height: 20px;
+  width: 20px;
   background-color: green;
 }
