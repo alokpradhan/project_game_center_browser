@@ -35,14 +35,18 @@ var view = {
   },
 
   setSnake: function() {
-    startingDivID = view.defaultSize + 2;
-    $('#' + (startingDivID).addClass('snake'));
-    model.gameboard[startingDivID] = 'snake';
-    model.snake.head = startingDivID;
+    var startingDivID = view.defaultSize + 2;
+    $('#' + startingDivID + ', #' + (startingDivID + 1) ).addClass('snake');
+    model.createSnake(startingDivID);
   },
 
   moveSnake: function(direction){
     console.log('snake moving');
+    snakeHead = model.snakePosition[0];
+    snakeTail = model.snakePosition[model.score+1];
+    $('#' + (snakeHead+1)).addClass('snake');
+    $('#' + (snakeTail)).removeClass('snake');
+    model.updateSnakeMove(snakeHead+1);
     // this.currentDirection
   }
 
