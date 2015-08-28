@@ -1,18 +1,20 @@
 
 var controller = {
 
+  level: 0,
+
   init: function(){
-    var level = this.selectDifficulty();
-    view.init(level);
+    this.level = this.selectDifficulty();
+    view.init(this.level);
     this.gameLoop();
   },
 
   selectDifficulty: function(){
-    var level = prompt('Select Difficulty Level: 1 for easy, 2 for medium, 3 for difficult');
-    if (isNaN(level) || level > 3 || level < 1) {
-      level = 1;
+    var input = prompt('Select Difficulty Level: 1 for easy, 2 for medium, 3 for difficult');
+    if (isNaN(input) || input > 3 || input < 1) {
+      input = 1;
     }
-    return level;
+    return input;
   },
 
   isValidMove: function(positionID){
@@ -21,7 +23,7 @@ var controller = {
   },
 
   gameLoop: function(){
-    window.interactionLoop = window.setInterval(view.makeMove, 500);
+    window.interactionLoop = window.setInterval(view.makeMove, 1000/(model.score*2+controller.level));
   },
 
   endGame: function(){
