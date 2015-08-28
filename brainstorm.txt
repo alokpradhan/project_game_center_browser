@@ -23,7 +23,8 @@ VIEW
   init()
     setBoardSize()
       -css attributes for height and width
-    create listener for keyboard press (3directions)
+    create listener for keyboard press (3 directions)
+    create listener for gameboard(snake constantly moves)
 
   snakeEatsFood event triggers snake growth
   .offset()
