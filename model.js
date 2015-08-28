@@ -25,7 +25,13 @@ var model = {
 
   growSnake: function(newHeadDivID){
     this.snakePosition.unshift(newHeadDivID);
+    this.gameboard[newHeadDivID] = 'snake';
     this.score++;
+    this.ateFood(newHeadDivID);
+  },
+
+  ateFood: function(oldFoodID){
+    this.gameboard[oldFoodID]= '';
   }
 
 };

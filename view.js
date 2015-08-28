@@ -47,26 +47,29 @@ var view = {
 
   setFood: function() {
     var randomID;
-    $('.food').removeClass('food');
+    $('.food').addClass('snake').removeClass('food');
     do {
       randomID = Math.floor(Math.random()* this.totalDivs);
     } while (model.gameboard[randomID] !== "");
     $('#' + randomID).addClass('food');
     model.gameboard[randomID] = "food";
+    console.log('food here: '+ randomID);
   },
 
   makeMove: function(){
     nextPosID =  view.newDirectionID();
+    console.log('nextPosID: ' + nextPosID);
     if (controller.isValidMove(nextPosID)){
-      console.log('inside makeMove if true');
       if (model.gameboard[nextPosID] === 'food'){
-        console.log(model.gameboard[nextPosID]);
+        console.log('nextPos is: ' + model.gameboard[nextPosID]);
+        // console.log('snakeHead')
         model.growSnake(nextPosID);
         view.setFood();
       } else {
         view.moveSnake(nextPosID);
       }
     } else {
+      view.moveSnake(nextPosID);
       controller.endGame();
     }
   },
