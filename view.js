@@ -1,6 +1,7 @@
 var view = {
 
   defaultSize: 0,
+  gameboard: {},
 
   init: function(level){
     this.setGameBoard(level);
@@ -8,25 +9,35 @@ var view = {
   },
 
   setGameBoard: function(level) {
-    view.defaultSize = 90/level;
+    view.defaultSize = 60/level;
     totalDivs = view.defaultSize * view.defaultSize;
     for(var i=1; i <= totalDivs; i++){
-      // if ('#')
-
       $('#gameboard').append('<div class="square" id="'+i+'"></div>');
+      view.gameboard[i] = "";
       if (i % view.defaultSize === 0){
         $('#gameboard').append('<br>');
       }
-
-      // between 1-default-size, last row, after and before break
     }
+    view.setBorder();
+    view.setSnake();
+  },
+
+  setBorder: function() {
+    totalDivs = view.defaultSize * view.defaultSize;
+    for(var i=1; i <= totalDivs; i++){
+      if (i <= view.defaultSize ||
+          (i > totalDivs-view.defaultSize && i <= totalDivs) ||
+          (i%view.defaultSize === 0 || i%view.defaultSize === 1)
+        ) {
+        $('#'+ i).addClass('border');
+        view.gameboard[i] = 'border';
+      }
+    }
+  },
+
+  setSnake: function() {
+    $('#' + (view.defaultSize + 2)).addClass('snake');
   }
-  // setGameboard: function(size){
-  //   for( var i=1; i <= size; i++){
-  //     var $card = $('<div class="hidden-square" id="'+i+'"></div>');
-  //     $('#gameboard').append($card);
-  //   }
-  // }
 
   // make method call or property only?
   // var keys: {
