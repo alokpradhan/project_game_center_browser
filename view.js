@@ -36,7 +36,7 @@ var view = {
 
   setSnake: function() {
     startingDivID = view.defaultSize + 2;
-    $('#' + (startingDivID).addClass('snake'));
+    $('#' + startingDivID).addClass('snake');
     model.gameboard[startingDivID] = 'snake';
     model.snake.head = startingDivID;
   },
