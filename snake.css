@@ -1,0 +1,11 @@
+
+#gameboard {
+  padding: 1em;
+  border: 5px solid black;
+}
+
+#snake {
+  height: 5px;
+  width: 5px;
+  background-color: green;
+}

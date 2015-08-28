@@ -1,0 +1,32 @@
+CONTROLLER
+  init()
+  playerdifficulty (low, medium, high) (smaller screen = high diff.)
+    view.init()
+
+
+-------------------------
+MODEL
+  init()
+    -create snake obj with size
+
+  snakeGrows: when snake hits food
+     snakelength += 1
+     score += 1
+
+  snakeModel:
+
+  foodPosition: put in random pos not on snake
+
+
+-------------------------
+VIEW
+  init()
+    setBoardSize()
+      -css attributes for height and width
+    create listener for keyboard press (3directions)
+
+  snakeEatsFood event triggers snake growth
+  .offset()
+
+
+-------------------------
