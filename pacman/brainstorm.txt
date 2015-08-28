@@ -1,0 +1,36 @@
+Model
+Constructor for Monster
+var movementTimer
+setStartposition(character)
+var currentPosition:[];
+
+PacMan < Monster
+Pacman.setStartposition()
+specialAbility: true/false;
+
+Ghost < Monster
+Pacman.setStartposition()
+
+Maze: {}
+Points
+
+View
+- Initialize
+  - Set grid
+  - Set monsters
+  - Set food
+  - Set glowyball
+  - Set listener on keypress (directions)
+- render score()
+- changePacmanDirection()
+  - userMove()
+- makeMove()
+  - makeMonsterMove()
+  - makePacmanMove()
+
+Controller
+- Set level
+- Initialize view
+- Begin play loop
+- Check victory
+- Check loss
