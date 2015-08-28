@@ -21,8 +21,9 @@ var model = {
   updateSnakeMove: function(newHeadDivID) {
     //add div
     this.snakePosition.unshift(newHeadDivID);
+    tailID = this.snakePosition.pop();
     this.gameboard[newHeadDivID] = 'snake';
-    this.gameboard[this.snakePosition.pop()] = '';
+    this.gameboard[tailID] = '';
   },
 
   growSnake: function(newHeadDivID){

@@ -6,14 +6,18 @@ var view = {
 
   init: function(level){
     this.setGameBoard(level);
-
+    this.showScore();
     $(document).keydown(function(event){
       view.setSnakeDirection(event);
     });
   },
 
+  showScore: function() {
+    $('#score').text(model.score);
+  },
+
   setGameBoard: function(level) {
-    view.defaultSize = 60/level;
+    view.defaultSize = (40-(level*2));
     this.totalDivs = view.defaultSize * view.defaultSize;
     for(var i=1; i <= this.totalDivs; i++){
       $('#gameboard').append('<div class="square" id="'+i+'"></div>');
@@ -48,6 +52,7 @@ var view = {
   setFood: function() {
     var randomID;
     $('.food').addClass('snake').removeClass('food');
+    view.showScore();
     do {
       randomID = Math.floor(Math.random()* this.totalDivs);
     } while (model.gameboard[randomID] !== "");
@@ -69,7 +74,6 @@ var view = {
         view.moveSnake(nextPosID);
       }
     } else {
-      console.log('class of next: ' +model.gameboard[nextPosID]);
       view.moveSnake(nextPosID);
       controller.endGame();
     }
