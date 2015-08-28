@@ -16,13 +16,19 @@ var controller = {
     return level;
   },
 
+  isValidMove: function(positionID){
+    var posValue = model.gameboard[positionID];
+    return (posValue === '' || posValue === 'food');
+  },
+
   gameLoop: function(){
-    setInterval(view.moveSnake, 1000);
+    window.setInterval(view.makeMove, 800);
   },
 
 
   endGame: function(){
-    clearInterval(this.gameLoop());
+    window.clearInterval(this.gameLoop());
+    alert('You Lost!');
   }
 
 
