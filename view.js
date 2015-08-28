@@ -69,6 +69,7 @@ var view = {
         view.moveSnake(nextPosID);
       }
     } else {
+      console.log('class of next: ' +model.gameboard[nextPosID]);
       view.moveSnake(nextPosID);
       controller.endGame();
     }

@@ -19,8 +19,10 @@ var model = {
   },
 
   updateSnakeMove: function(newHeadDivID) {
+    //add div
     this.snakePosition.unshift(newHeadDivID);
-    this.snakePosition.pop();
+    this.gameboard[newHeadDivID] = 'snake';
+    this.gameboard[this.snakePosition.pop()] = '';
   },
 
   growSnake: function(newHeadDivID){

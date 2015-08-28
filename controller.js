@@ -21,7 +21,7 @@ var controller = {
   },
 
   gameLoop: function(){
-    window.interactionLoop = window.setInterval(view.makeMove, 500);
+    window.interactionLoop = window.setInterval(view.makeMove, 300);
   },
 
   endGame: function(){
