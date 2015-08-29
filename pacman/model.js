@@ -17,6 +17,7 @@ var model = {
 
   eatFood: function(oldFoodID){
     this.maze[oldFoodID] = '';
+    this.score++;
     // this.itemPosition['food'] = oldFoodID;
   }
 

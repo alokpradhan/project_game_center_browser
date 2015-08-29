@@ -89,14 +89,19 @@ var view = {
     nextPosID =  view.newDirectionID();
     if (controller.isValidMove(nextPosID)){
       if (model.maze[nextPosID] === 'food'){
+        view.eatFood(nextPosID);
         view.showScore();
-      } else {
-        view.movePacman(nextPosID);
       }
+      view.movePacman(nextPosID);
     } else {
       view.movePacman(nextPosID);
       controller.endGame();
     }
+  },
+
+  eatFood: function(nextPosID){
+    model.eatFood(nextPosID);
+    $('#'+ nextPosID).removeClass('food');
   },
 
   newDirectionID: function() {
