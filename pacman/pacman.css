@@ -1,1 +1,21 @@
-pacman.css
+#gameboard {
+  line-height: 0;
+}
+
+.square {
+  display: inline-block;
+  height: 10px;
+  width: 10px;
+}
+
+.border {
+  background-color: black;
+}
+
+.food {
+  background-color: o;
+}
+
+.pacman{
+  background-image: ;
+}

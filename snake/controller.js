@@ -35,5 +35,4 @@ var controller = {
 
 $(document).ready(function(){
   controller.init();
-  // view.moveSnake();
 });

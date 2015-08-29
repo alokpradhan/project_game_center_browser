@@ -2,11 +2,18 @@
 <html>
  <head>
   <meta charset="utf-8"/>
-  <script type="application/javascript" src="view.js"></script>
+  <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+  <script type="text/javascript" src="controller.js"></script>
+  <script type="text/javascript" src="model.js"></script>
+  <script type="text/javascript" src="view.js"></script>
+  <link rel="stylesheet" type="text/css" href="pacman.css"/>
  </head>
- <body onload="view.draw();">
-   <canvas id="canvas" width="500" height="500">
-    <img src="http://myrabridgforth.com/wp-content/uploads/blue-sky-clouds.jpg" width="150" height="150" alt=""/>
-   </canvas>
+ <body>
+  <div>
+    <h3>Score: <span id="score"></span></h3>
+  </div>
+  <div id="gameboard">
+  </div>
+
  </body>
 </html>
