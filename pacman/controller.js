@@ -5,6 +5,7 @@ var controller = {
   init: function(){
     this.level = this.selectDifficulty();
     view.init(this.level);
+    model.initialize();
     this.gameLoop();
   },
 
@@ -17,7 +18,7 @@ var controller = {
   },
 
   isValidMove: function(positionID){
-    var posValue = model.gameboard[positionID];
+    var posValue = model.maze[positionID];
     return (posValue === '' || posValue === 'food' || posValue === 'glow');
   },
 

@@ -58,19 +58,19 @@ var view = {
   setGhost: function(num){
     for(var i; i< num; i++){
       setRandomItem('ghost');
-    };
+    }
   },
 
   setPacman: function() {
     var startingDivID = view.defaultSize + 2;
     $('#' + startingDivID).addClass('pacman');
-    model.createMonster(startingDivID, 'pacman');
+    model.itemPosition['pacman'] = startingDivID;
   },
 
   setFood: function(num) {
     for(var i; i< num; i++){
       setRandomItem('food');
-    };
+    }
   },
 
   setRandomItem: function(className){
@@ -79,6 +79,9 @@ var view = {
       randomID = Math.floor(Math.random()* this.totalDivs);
     } while (model.maze[randomID] !== "");
     $('#' + randomID).addClass(className);
+    model.itemPosition[className] = randomID;
+    // Send in randomID into an array for multiple monsters
+    // OR create unique classNames
     model.maze[randomID] = className;
   },
 

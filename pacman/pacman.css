@@ -13,9 +13,9 @@
 }
 
 .food {
-  background-color: o;
+  background-color: green;
 }
 
 .pacman{
-  background-image: ;
+  background-image: url(pacman-moving.gif);
 }
