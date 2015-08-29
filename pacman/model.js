@@ -1,5 +1,5 @@
 var model = {
-
+  score: 0,
   maze: {},
   itemPosition: {},
 
@@ -8,10 +8,16 @@ var model = {
     this.ghost = new Monster('ghost');
   },
 
-  updatePacmanMove: function(){
+  updatePacmanMove: function(newDivID){
+    console.log(this);
     this.maze[newDivID] = 'pacman';
-    this.maze[oldDivID] = this.itemPosition['pacman'];
+    this.maze[this.itemPosition['pacman']] = '';
     this.itemPosition['pacman'] = newDivID;
+  },
+
+  eatFood: function(oldFoodID){
+    this.maze[oldFoodID] = '';
+    // this.itemPosition['food'] = oldFoodID;
   }
 
 };

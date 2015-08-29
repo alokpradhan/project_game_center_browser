@@ -19,6 +19,7 @@ var controller = {
 
   isValidMove: function(positionID){
     var posValue = model.maze[positionID];
+    console.log(posValue);
     return (posValue === '' || posValue === 'food' || posValue === 'glow');
   },
 
@@ -33,7 +34,4 @@ var controller = {
 
 };
 
-$(document).ready(function(){
-  controller.init();
-
-});
+$(document).ready(function(){ controller.init(); });

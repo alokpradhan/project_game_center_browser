@@ -6,6 +6,7 @@
   display: inline-block;
   height: 10px;
   width: 10px;
+  background-color: gray;
 }
 
 .border {
@@ -17,5 +18,10 @@
 }
 
 .pacman{
-  background-image: url(pacman-moving.gif);
+/*  background-image: url(pacman-moving.gif);*/
+  background-color: red;
+}
+
+.ghost{
+  background-color: white;
 }

@@ -52,12 +52,11 @@ var view = {
   //preset per level to make solvable maze
   setMazeObstacles: function(){
     //make obstacles and label wall
-
   },
 
   setGhost: function(num){
-    for(var i; i< num; i++){
-      setRandomItem('ghost');
+    for(var i=0; i< num; i++){
+      view.setRandomItem('ghost');
     }
   },
 
@@ -68,8 +67,8 @@ var view = {
   },
 
   setFood: function(num) {
-    for(var i; i< num; i++){
-      setRandomItem('food');
+    for(var i=0; i< num; i++){
+      view.setRandomItem('food');
     }
   },
 
@@ -78,6 +77,7 @@ var view = {
     do {
       randomID = Math.floor(Math.random()* this.totalDivs);
     } while (model.maze[randomID] !== "");
+    console.log(className);
     $('#' + randomID).addClass(className);
     model.itemPosition[className] = randomID;
     // Send in randomID into an array for multiple monsters
@@ -97,11 +97,10 @@ var view = {
       view.movePacman(nextPosID);
       controller.endGame();
     }
-
   },
 
   newDirectionID: function() {
-    var pacmanPosition = model.pacmanID;
+    var pacmanPosition = model.itemPosition['pacman'];
     var divIdToMoveTo = 0;
     switch (this.currentDirection) {
       case 'left' :
@@ -121,7 +120,7 @@ var view = {
   },
 
   movePacman: function(nextPosID){
-    previousPos = model.pacmanID;
+    previousPos = model.itemPosition['pacman'];
     $('#' + nextPosID).addClass('pacman');
     $('#' + previousPos).removeClass('pacman');
     model.updatePacmanMove(nextPosID);
