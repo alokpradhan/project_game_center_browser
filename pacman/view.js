@@ -1,9 +1,10 @@
 var view = {
 
   defaultGhost: 0,
-  totalDivs: 2500,
-  defaultSize: 50,
-  currentDirection: "right",
+  totalDivs: 400,
+  defaultSize: 20,
+  currentDirection: 'right',
+  prevDirection: '',
 
   init: function(level){
     this.setGameBoard(level);
@@ -55,9 +56,10 @@ var view = {
   },
 
   setGhost: function(num){
-    for(var i=0; i< num; i++){
-      view.setRandomItem('ghost');
+    for(var i=0; i < num; i++){
+      view.setRandomItem('ghost', i);
     }
+    console.log(model.itemPosition);
   },
 
   setPacman: function() {
@@ -67,30 +69,49 @@ var view = {
   },
 
   setFood: function(num) {
-    for(var i=0; i< num; i++){
-      view.setRandomItem('food');
+    for(var i=0; i < num; i++){
+      view.setRandomItem('food', '');
     }
+    console.log(model.itemPosition);
   },
 
-  setRandomItem: function(className){
+  setRandomItem: function(className, num){
     var randomID;
     do {
       randomID = Math.floor(Math.random()* this.totalDivs);
     } while (model.maze[randomID] !== "");
-    console.log(className);
+    console.log(className+num+ " at "+randomID);
     $('#' + randomID).addClass(className);
-    model.itemPosition[className] = randomID;
-    // Send in randomID into an array for multiple monsters
-    // OR create unique classNames
+    model.itemPosition[className+num] = randomID;
     model.maze[randomID] = className;
   },
 
-  makeMove: function(){
-    nextPosID =  view.newDirectionID();
+  eatFood: function(nextPosID){
+    model.eatFood(nextPosID);
+    $('#'+ nextPosID).removeClass('food');
+  },
+
+  ghostMoveLoop: function(nextPosID, ghostNum){
+    view.moveGhost(nextPosID, ghostNum);
+  },
+
+  moveGhost: function(nextPosID, ghostNum){
+    previousPos = model.itemPosition[ghostNum];
+    $('#' + nextPosID).addClass('ghost');
+    $('#' + previousPos).removeClass('ghost');
+    model.updateGhostMove(nextPosID, ghostNum);
+  },
+
+  pacmanMoveLoop: function(){
+    var nextPosID =  view.newDirectionID();
     if (controller.isValidMove(nextPosID)){
+      // console.log('next divID '+model.maze[nextPosID]);
       if (model.maze[nextPosID] === 'food'){
         view.eatFood(nextPosID);
         view.showScore();
+      } else if (model.maze[nextPosID] === 'wall') {
+        console.log(nextPosID, model.itemPosition['pacman']);
+        nextPosID = model.itemPosition['pacman'];
       }
       view.movePacman(nextPosID);
     } else {
@@ -99,9 +120,16 @@ var view = {
     }
   },
 
-  eatFood: function(nextPosID){
-    model.eatFood(nextPosID);
-    $('#'+ nextPosID).removeClass('food');
+  movePacman: function(nextPosID){
+    previousPos = model.itemPosition['pacman'];
+    $('#' + previousPos).removeClass('pacman');
+    $('#' + nextPosID).addClass('pacman');
+    model.updatePacmanMove(nextPosID);
+  },
+
+  setPacmanDirection: function(event){
+    this.prevDirection = this.currentDirection;
+    this.currentDirection = this.userMove[event.which];
   },
 
   newDirectionID: function() {
@@ -122,17 +150,6 @@ var view = {
         break;
     }
     return divIdToMoveTo;
-  },
-
-  movePacman: function(nextPosID){
-    previousPos = model.itemPosition['pacman'];
-    $('#' + nextPosID).addClass('pacman');
-    $('#' + previousPos).removeClass('pacman');
-    model.updatePacmanMove(nextPosID);
-  },
-
-  setPacmanDirection: function(event){
-    this.currentDirection = this.userMove[event.which];
   },
 
   userMove: {

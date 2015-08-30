@@ -9,16 +9,51 @@ var model = {
   },
 
   updatePacmanMove: function(newDivID){
-    console.log(this);
     this.maze[newDivID] = 'pacman';
     this.maze[this.itemPosition['pacman']] = '';
     this.itemPosition['pacman'] = newDivID;
   },
 
   eatFood: function(oldFoodID){
+    console.log("Eating food at:"+oldFoodID);
     this.maze[oldFoodID] = '';
     this.score++;
     // this.itemPosition['food'] = oldFoodID;
+  },
+
+  ghostMovement: function(ghostNum){
+    // console.log('returning movement' + movements[0]);
+    return model.selectGhostMove(ghostNum);
+    // Add checks so ghost can't go thru walls
+  },
+
+  updateGhostMove: function(newDivID, ghostNum){
+    console.log('updating ghost3 to ' + newDivID);
+    this.maze[newDivID] = 'ghost';
+    this.maze[this.itemPosition[ghostNum]] = '';
+    this.itemPosition[ghostNum] = newDivID;
+  },
+
+  selectGhostMove: function(ghost) {
+    var currentPosition = model.itemPosition[ghost];
+    var move = null;
+    var potentialGhostMoves = [currentPosition-1,
+                              currentPosition+1,
+                              currentPosition-view.defaultSize,
+                              currentPosition+view.defaultSize];
+    if (ghost == 'ghost0'){
+      move = potentialGhostMoves[0];
+    } else if (ghost == 'ghost1'){
+      move = potentialGhostMoves[2];
+    } else {
+      randomMove = Math.floor(Math.random()*4);
+      move = potentialGhostMoves[randomMove];
+    }
+    return move;
+  },
+
+  ensureGhostsStayInbounds: function(){
+
   }
 
 };

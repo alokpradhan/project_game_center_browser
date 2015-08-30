@@ -6,7 +6,8 @@ var controller = {
     this.level = this.selectDifficulty();
     view.init(this.level);
     model.initialize();
-    this.gameLoop();
+    this.pacmanLoop();
+    this.ghostLoop();
   },
 
   selectDifficulty: function(){
@@ -19,16 +20,30 @@ var controller = {
 
   isValidMove: function(positionID){
     var posValue = model.maze[positionID];
-    console.log(posValue);
-    return (posValue === '' || posValue === 'food' || posValue === 'glow');
+    return (posValue === ''     ||
+            posValue === 'food' ||
+            posValue === 'glow' ||
+            posValue === 'wall');
   },
 
-  gameLoop: function(){
-    window.interactionLoop = window.setInterval(view.makeMove, 1000/(controller.level));
+  pacmanLoop: function(){
+    window.pacmanLoop = window.setInterval(view.pacmanMoveLoop, 1000/(controller.level));
+  },
+
+  ghostLoop: function(){
+    window.ghostLoop = window.setInterval(function(){
+      numOfGhosts = view.defaultGhost;
+      for(var i = 0; i < numOfGhosts; i++){
+        nextPosID = model.ghostMovement('ghost'+i);
+        view.ghostMoveLoop(nextPosID, 'ghost'+ i);
+      }
+    },
+    3000/(controller.level));
   },
 
   endGame: function(){
-    window.clearInterval(window.interactionLoop);
+    window.clearInterval(window.pacmanLoop);
+    window.clearInterval(window.ghostLoop);
     alert('You Lost!');
   }
 

@@ -4,24 +4,28 @@
 
 .square {
   display: inline-block;
-  height: 10px;
-  width: 10px;
-  background-color: gray;
-}
-
-.border {
-  background-color: black;
+  height: 20px;
+  width: 20px;
+/*  background-color: white;*/
+/*  border: 1px dashed gray;*/
 }
 
 .food {
-  background-color: green;
+  background-image: url(blinking_dot.gif);
+  background-size: contain;
 }
 
 .pacman{
-/*  background-image: url(pacman-moving.gif);*/
-  background-color: red;
+  background-image: url(pacman-moving.gif);
+  background-size: contain;
 }
 
 .ghost{
-  background-color: white;
+  background-image: url(red-ghost.png);
+  background-size: contain;
+}
+
+.wall{
+  background-image: url(wall.png);
+  background-size: contain;
 }
