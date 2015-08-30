@@ -1,5 +1,6 @@
 var model = {
   score: 0,
+  scatter: false,
   maze: {},
   itemPosition: {},
 
@@ -19,6 +20,13 @@ var model = {
     this.maze[oldFoodID] = '';
     this.score++;
     // this.itemPosition['food'] = oldFoodID;
+  },
+
+  eatSuperFood: function(oldSuperFoodID){
+    console.log("Eating super food at:"+oldSuperFoodID);
+    this.maze[oldSuperFoodID] = '';
+    this.score+=5;
+    this.scatter = true;
   },
 
   ghostMovement: function(ghostNum){
@@ -50,6 +58,18 @@ var model = {
       move = potentialGhostMoves[randomMove];
     }
     return move;
+  },
+
+  ghostOneMove: function(){
+
+  },
+
+  ghostTwoMove: function(){
+
+  },
+
+  ghostThreeMove: function(){
+
   },
 
   ensureGhostsStayInbounds: function(){

@@ -3,6 +3,8 @@ var view = {
   defaultGhost: 0,
   totalDivs: 400,
   defaultSize: 20,
+  food: 30,
+  superFood: 5,
   currentDirection: 'right',
   prevDirection: '',
 
@@ -30,7 +32,8 @@ var view = {
     view.setWall();
     view.setPacman();
     view.setGhost(controller.level);
-    view.setFood(30);
+    view.setFood(view.food);
+    view.setSuperFood(view.superFood);
   },
 
   setWall: function() {
@@ -75,6 +78,13 @@ var view = {
     console.log(model.itemPosition);
   },
 
+  setSuperFood: function(num) {
+    for(var i=0; i < num; i++){
+      view.setRandomItem('super-food', '');
+    }
+    console.log(model.itemPosition);
+  },
+
   setRandomItem: function(className, num){
     var randomID;
     do {
@@ -89,6 +99,11 @@ var view = {
   eatFood: function(nextPosID){
     model.eatFood(nextPosID);
     $('#'+ nextPosID).removeClass('food');
+  },
+
+  eatSuperFood: function(nextPosID){
+    model.eatSuperFood(nextPosID);
+    $('#'+ nextPosID).removeClass('super-food');
   },
 
   ghostMoveLoop: function(nextPosID, ghostNum){
@@ -109,6 +124,9 @@ var view = {
       if (model.maze[nextPosID] === 'food'){
         view.eatFood(nextPosID);
         view.showScore();
+      } else if (model.maze[nextPosID] === 'super-food') {
+        view.eatSuperFood(nextPosID);
+        view.showScore();
       } else if (model.maze[nextPosID] === 'wall') {
         console.log(nextPosID, model.itemPosition['pacman']);
         nextPosID = model.itemPosition['pacman'];
@@ -123,13 +141,25 @@ var view = {
   movePacman: function(nextPosID){
     previousPos = model.itemPosition['pacman'];
     $('#' + previousPos).removeClass('pacman');
+    $('#' + previousPos).rotate(0);
     $('#' + nextPosID).addClass('pacman');
+    $('#'+nextPosID).rotate(this.rotatePacman());
     model.updatePacmanMove(nextPosID);
+  },
+
+  rotatePacman: function(){
+    if (this.prevDirection !== this.currentDirection) {
+      return this.pacmanRotation[this.currentDirection];
+    } else {
+      return 0;
+    }
   },
 
   setPacmanDirection: function(event){
     this.prevDirection = this.currentDirection;
-    this.currentDirection = this.userMove[event.which];
+    this.currentDirection =
+    this.userMove[event.which] === undefined ?
+    this.prevDirection : this.userMove[event.which];
   },
 
   newDirectionID: function() {
@@ -148,8 +178,17 @@ var view = {
       case 'down':
         divIdToMoveTo = pacmanPosition + view.defaultSize;
         break;
+      default:
+        divIdToMoveTo = pacmanPosition;
     }
     return divIdToMoveTo;
+  },
+
+  pacmanRotation: {
+    'left': 180,
+    'up': 270,
+    'right': 0,
+    'down': 90
   },
 
   userMove: {
@@ -159,6 +198,11 @@ var view = {
     40: 'down'
   }
 
-
 };
 
+jQuery.fn.rotate = function(degrees) {
+    $(this).css({'-webkit-transform' : 'rotate('+ degrees +'deg)',
+     '-moz-transform' : 'rotate('+ degrees +'deg)',
+     '-ms-transform' : 'rotate('+ degrees +'deg)',
+     'transform' : 'rotate('+ degrees +'deg)'});
+};

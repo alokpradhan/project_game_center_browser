@@ -9,7 +9,9 @@ Pacman.setStartposition()
 specialAbility: true/false;
 
 Ghost < Monster
-Pacman.setStartposition()
+Ghost.setStartposition()
+Ghost.movement()
+Ghost.ensureItStaysInbound()
 
 Maze: {}
 Points

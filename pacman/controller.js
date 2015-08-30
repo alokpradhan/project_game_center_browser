@@ -20,14 +20,15 @@ var controller = {
 
   isValidMove: function(positionID){
     var posValue = model.maze[positionID];
-    return (posValue === ''     ||
-            posValue === 'food' ||
-            posValue === 'glow' ||
+    return (posValue === ''           ||
+            posValue === 'food'       ||
+            posValue === 'super-food' ||
+            posValue === 'glow'       ||
             posValue === 'wall');
   },
 
   pacmanLoop: function(){
-    window.pacmanLoop = window.setInterval(view.pacmanMoveLoop, 1000/(controller.level));
+    window.pacmanLoop = window.setInterval(view.pacmanMoveLoop, 200+(controller.level*40));
   },
 
   ghostLoop: function(){
@@ -38,7 +39,7 @@ var controller = {
         view.ghostMoveLoop(nextPosID, 'ghost'+ i);
       }
     },
-    3000/(controller.level));
+    1000/(controller.level));
   },
 
   endGame: function(){

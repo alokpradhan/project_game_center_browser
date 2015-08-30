@@ -11,21 +11,28 @@
 }
 
 .food {
-  background-image: url(blinking_dot.gif);
+  background: url(images/regular-food.png);
+  background-size: 35%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.super-food{
+  background-image: url(images/blinking_dot.gif);
   background-size: contain;
 }
 
 .pacman{
-  background-image: url(pacman-moving.gif);
+  background-image: url(images/pacman-moving.gif);
   background-size: contain;
 }
 
 .ghost{
-  background-image: url(red-ghost.png);
+  background-image: url(images/red-ghost.png);
   background-size: contain;
 }
 
 .wall{
-  background-image: url(wall.png);
+  background-image: url(images/wall.png);
   background-size: contain;
 }
