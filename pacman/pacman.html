@@ -3,17 +3,50 @@
  <head>
   <meta charset="utf-8"/>
   <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
   <script type="text/javascript" src="controller.js"></script>
   <script type="text/javascript" src="model.js"></script>
   <script type="text/javascript" src="view.js"></script>
   <link rel="stylesheet" type="text/css" href="pacman.css"/>
  </head>
- <body>
-  <div>
-    <h3>Score: <span id="score"></span></h3>
-  </div>
-  <div id="gameboard">
-  </div>
 
+ <body>
+  <nav class="navbar navbar-inverse">
+    <div class='container-fluid'>
+      <div class="navbar-header">
+        <img alt="Brand" src="images/pacman.png" class='navbar-brand'>
+      </div>
+      <h3 class="navbar-text">Pacman</h3>
+    </div>
+  </nav>
+
+  <div class='row'>
+
+    <div class='col-sm-5 col-sm-offset-1'>
+        <div id="gameboard">
+        </div>
+    </div>
+
+    <div class='col-sm-3'>
+      <div class='row'>
+          <h4>Instructions</h4>
+          <ul>
+            <li> Eat food (black discs) to get points </li>
+            <li> Eat super food (flashing discs) to get super powers! </li>
+            <li> Eat star to clear the level </li>
+            <li> Avoid ghosts and get rolling... </li>
+          </ul>
+      </div>
+      <div class='spacer'>
+      </div>
+      <div class='row'>
+        <button class="btn btn-success btn-lg btn-block" type="button">
+          Score  <span class='badge' id="score"></span>
+        </button>
+      </div>
+    </div>
+
+  </div>
  </body>
+
 </html>

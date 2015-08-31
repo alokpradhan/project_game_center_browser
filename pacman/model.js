@@ -29,6 +29,10 @@ var model = {
     this.scatter = true;
   },
 
+  eatGlow: function(){
+    return this.itemPosition['glow'];
+  },
+
   ghostMovement: function(ghostNum){
     // console.log('returning movement' + movements[0]);
     return model.selectGhostMove(ghostNum);

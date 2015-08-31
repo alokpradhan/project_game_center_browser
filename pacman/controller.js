@@ -42,10 +42,10 @@ var controller = {
     1000/(controller.level));
   },
 
-  endGame: function(){
+  endGame: function(message){
     window.clearInterval(window.pacmanLoop);
     window.clearInterval(window.ghostLoop);
-    alert('You Lost!');
+    alert(message);
   }
 
 };

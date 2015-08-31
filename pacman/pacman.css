@@ -36,3 +36,17 @@
   background-image: url(images/wall.png);
   background-size: contain;
 }
+
+.glow{
+  background-image: url(images/glow.jpg);
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.navbar .navbar-text{
+  color: #fff;
+}
+
+.spacer {
+  height:50px;
+}

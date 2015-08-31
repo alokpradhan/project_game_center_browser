@@ -31,6 +31,8 @@ var view = {
     }
     view.setWall();
     view.setPacman();
+    view.setGlow();
+    view.setMazeObstacles();
     view.setGhost(controller.level);
     view.setFood(view.food);
     view.setSuperFood(view.superFood);
@@ -55,7 +57,16 @@ var view = {
 
   //preset per level to make solvable maze
   setMazeObstacles: function(){
-    //make obstacles and label wall
+    for(var i=0; i < view.totalDivs/view.defaultSize; i++){
+      view.setRandomItem('wall', '');
+    }
+  },
+
+  setGlow: function(){
+    var insertGlowAtDivID = view.totalDivs/2 + view.defaultSize/2;
+    $('#'+insertGlowAtDivID).addClass('glow');
+    model.maze[insertGlowAtDivID] = 'glow';
+    model.itemPosition['glow'] = insertGlowAtDivID;
   },
 
   setGhost: function(num){
@@ -106,6 +117,12 @@ var view = {
     $('#'+ nextPosID).removeClass('super-food');
   },
 
+  eatGlow: function(){
+    var glowID = model.eatGlow();
+    console.log(glowID);
+    $('#'+ glowID).removeClass('glow');
+  },
+
   ghostMoveLoop: function(nextPosID, ghostNum){
     view.moveGhost(nextPosID, ghostNum);
   },
@@ -130,11 +147,15 @@ var view = {
       } else if (model.maze[nextPosID] === 'wall') {
         console.log(nextPosID, model.itemPosition['pacman']);
         nextPosID = model.itemPosition['pacman'];
+      } else if (model.maze[nextPosID] === 'glow') {
+        view.eatGlow();
+        view.movePacman(nextPosID);
+        controller.endGame("You Win!");
       }
       view.movePacman(nextPosID);
     } else {
       view.movePacman(nextPosID);
-      controller.endGame();
+      controller.endGame("You Lose! The Ghost ate you!");
     }
   },
 
