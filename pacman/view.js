@@ -155,7 +155,7 @@ var view = {
       view.movePacman(nextPosID);
     } else {
       view.movePacman(nextPosID);
-      controller.endGame("You Lose! The Ghost ate you!");
+      controller.endGame("You Lose! The ghost ate you!");
     }
   },
 
