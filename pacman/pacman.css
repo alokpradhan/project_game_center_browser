@@ -6,6 +6,7 @@
   display: inline-block;
   height: 27px;
   width: 27px;
+  background-color: #fff;
 /*  background-color: white;*/
 /*  border: 1px dashed gray;*/
 }
@@ -15,11 +16,13 @@
   background-size: 35%;
   background-repeat: no-repeat;
   background-position: center;
+  background-color: #fff;
 }
 
 .super-food{
   background-image: url(images/blinking_dot.gif);
   background-size: contain;
+  background-color: #fff;
 }
 
 .pacman{
@@ -49,4 +52,11 @@
 
 .spacer {
   height:50px;
+}
+
+.whole-page {
+    background-image: url(images/background.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: #fff;
 }
